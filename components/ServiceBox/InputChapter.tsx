@@ -31,7 +31,6 @@ export const InputChapter = ({
       <button onClick={handlePrev}>Back</button>
       )}
       <input
-
         type="text"
         name={chapters[chapter].step}
         value={chapters[chapter].input[chapters[chapter].step]}

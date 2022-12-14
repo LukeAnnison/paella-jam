@@ -1,3 +1,4 @@
+import styles from "../../styles/Home.module.css";
 import { useContext, useEffect } from "react";
 import { VideoContext } from "../../contexts/video";
 import { InputChapter } from "./InputChapter";
