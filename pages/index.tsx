@@ -10,7 +10,7 @@ import { useProgress } from "../hooks/useVideo";
 export default function Home() {
   const { progress, setProgress } = useContext(VideoContext);
   const [playing, setPlaying] = useState(false);
-  const [chapter, setChapter] = useState(1);
+  const [chapter, setChapter] = useState('first');
   const [seeking, setSeeking] = useState(false);
   const player = useRef(null) as any;
 
@@ -39,11 +39,11 @@ export default function Home() {
   }) => {
     if (!seeking) {
       if (data.playedSeconds > 0 && data.playedSeconds < 10) {
-        setChapter(1);
+        setChapter('first');
       } else if (data.playedSeconds > 70 && data.playedSeconds < 120) {
-        setChapter(2);
+        setChapter('second');
       } else if (data.playedSeconds > 120) {
-        setChapter(3);
+        setChapter('third');
       }
     }
   };

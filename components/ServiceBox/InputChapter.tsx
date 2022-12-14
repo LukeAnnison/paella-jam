@@ -1,15 +1,9 @@
-import { useContext, useEffect } from "react";
-import { VideoContext } from "../../contexts/video";
-
 import styles from "../../styles/Home.module.css";
 
 interface Chapter {
   step: number;
   input: {
-    first: string;
-    second: string;
-    third: string;
-    fourth: string;
+    [key: number]: string
   };
 }
 
@@ -32,8 +26,12 @@ export const InputChapter = ({
   return (
     <div className={styles.sideBar}>
       <h3>Chapter {chapter}</h3>
+      <h3>Step {chapters[chapter].step}</h3>
+      {chapters[chapter].step > 1 && (
       <button onClick={handlePrev}>Back</button>
+      )}
       <input
+
         type="text"
         name={chapters[chapter].step}
         value={chapters[chapter].input[chapters[chapter].step]}
