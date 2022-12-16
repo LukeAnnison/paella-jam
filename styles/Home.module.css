@@ -10,8 +10,9 @@
   width: 500px;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: space-evenly;
+  flex-direction: column;
   font: 1.5rem sans-serif;
   padding: 1rem;
   margin-top: 3rem;
@@ -59,6 +60,78 @@
   top: -10px;
   box-shadow: 0 360px white;
 }
+
+.inputHeader {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.inputLabel{
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $gray;
+}
+
+
+.inputForm{
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  opacity: 0.5;
+  text-align: center;
+  transition: border-color 0.2s;
+
+  .inputForm::placeholder {
+    color: transparent;
+    text-align: center;
+  }
+}
+
+.inputForm:placeholder-shown ~ .inputLabel {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+
+
+.inputForm:focus {
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary,$secondary);
+  border-image-slice: 1;
+}
+/* reset input */
+.inputForm {
+  .inputForm:required,.inputForm:invalid { box-shadow:none; }
+}
+
+.inputButton {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  color: #333;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+
+  .inputButton:disabled {
+    background-color: black;
+  }
 
 .main {
   position: relative;
@@ -171,6 +244,10 @@
   margin: 20px 0;
   cursor: pointer;
   min-height: 200px;
+  height: 200px;
+  overflow: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   width: 540px;
   display: block;
   color: white;
@@ -193,7 +270,8 @@
 
 .chapter:hover::after,
 .chapterActive::after{
-  height: calc(100% + 8px)
+  height: calc(500px + 8px)
+  
 }
 
 

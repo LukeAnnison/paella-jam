@@ -10,9 +10,9 @@ interface Props {
 }
 
 const descriptionContent = {
-  1: "This is the first chapter of the first instance of the first chapter",
-  2: "This is the second chapter of the first instance of the first chapter",
-  3: "This is the third chapter of the first instance of the first chapter",
+  1: "I said we're all God's children, products of the ghetto, Momma cooked the soup, daddy did the yelling",
+  2: "Survival of the fittest, this poor girl the illest,  Broke mirrors and black cats give me heebie-geebies",
+  3: "Oh, oh, oh, oh, Oh, oh, oh, oh, Sing yeah, yeah, yeah, yeah, Sing yeah, yeah, yeah, yeah"
 };
 
 export default function Chapter({
@@ -45,7 +45,6 @@ const [description, setDescription] = useState("");
         setDescription(descriptionContent[3]);
         break;
         default:
-        setDescription(descriptionContent[1]);
     }
   }, []);
 

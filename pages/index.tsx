@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css'
 import ServiceBox from "../components/ServiceBox";
 import Chapter from "../components/Chapter";
 import ReactPlayer from "react-player";
-import { VideoContext } from "../contexts/video";
 
 export default function Home() {
   const [playing, setPlaying] = useState(false);
@@ -41,6 +40,7 @@ const [hasWindow, setHasWindow] = useState(false);
     loaded: number;
     playedSeconds: number;
     loadedSeconds: number;
+    duration: number;
   }) => {
     if (!seeking) {
       if (data.playedSeconds > 0 && data.playedSeconds < 10) {
@@ -53,6 +53,9 @@ const [hasWindow, setHasWindow] = useState(false);
     }
   };
 
+  useEffect(() => {
+    setPlaying(true);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -65,6 +68,8 @@ const [hasWindow, setHasWindow] = useState(false);
               url="https://www.youtube.com/watch?v=xhnqO-c2s5U"
               onProgress={handleProgress}
               playing={playing}
+              autoPlay={true}
+              progressInterval={1}
               onSeek={(e: number) => console.log("seek", e)}
               height='300px'
               width='500px'
@@ -74,7 +79,7 @@ const [hasWindow, setHasWindow] = useState(false);
           </div>
           <div className={styles.grid}>
             <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={1} />
-            <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={2} />
+            <Chapter  setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={2} />
             <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={3} />
           </div>
         </div>
