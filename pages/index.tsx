@@ -1,18 +1,24 @@
-import { useState, useContext, useRef, useMemo } from "react";
+import { useState, useEffect, useContext, useRef, useMemo } from "react";
 
-import styles from "../styles/Home.module.css";
+import styles from '../styles/Home.module.css'
 import ServiceBox from "../components/ServiceBox";
 import Chapter from "../components/Chapter";
 import ReactPlayer from "react-player";
 import { VideoContext } from "../contexts/video";
-import { useProgress } from "../hooks/useVideo";
 
 export default function Home() {
-  const { progress, setProgress } = useContext(VideoContext);
   const [playing, setPlaying] = useState(false);
   const [chapter, setChapter] = useState(1);
   const [seeking, setSeeking] = useState(false);
   const player = useRef(null) as any;
+
+  // Hydrates for React Player 
+const [hasWindow, setHasWindow] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setHasWindow(true);
+    }
+  }, []);
 
   const seek = (p: number) => {
     setSeeking(true);
@@ -20,7 +26,6 @@ export default function Home() {
       console.log("seeking to", p);
       player.current.seekTo(p);
       setPlaying(true);
-      // scroll to the top of the page slowly
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -48,31 +53,29 @@ export default function Home() {
     }
   };
 
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <div className={styles.grid}>
           <div className={styles.video}>
+        {
+        hasWindow &&
             <ReactPlayer
-              url="https://www.youtube.com/watch?v=N0sDb169Ngg"
+              url="https://www.youtube.com/watch?v=xhnqO-c2s5U"
               onProgress={handleProgress}
               playing={playing}
               onSeek={(e: number) => console.log("seek", e)}
               height='300px'
               width='500px'
               ref={player}
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 1, start: progress },
-                },
-              }}
             />
+        }
           </div>
-
           <div className={styles.grid}>
-            <Chapter seek={seek} chapter={1} />
-            <Chapter seek={seek} chapter={2} />
-            <Chapter seek={seek} chapter={3} />
+            <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={1} />
+            <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={2} />
+            <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={3} />
           </div>
         </div>
       </main>

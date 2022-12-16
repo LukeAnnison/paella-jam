@@ -12,8 +12,7 @@ interface Props {
   handleChange: (e: any) => void;
   handleNext: () => void;
   handlePrev: () => void;
-  handleSubmit: () => void;
-  chapters: Chapter[];
+  chapters: any;
 }
 
 export const InputChapter = ({
@@ -24,7 +23,7 @@ export const InputChapter = ({
   handleChange,
 }: Props) => {
   return (
-    <div className={styles.sideBar}>
+    <div className={styles.inputChapter}>
       <h3>Chapter {chapter}</h3>
       <h3>Step {chapters[chapter].step}</h3>
       {chapters[chapter].step > 1 && (
