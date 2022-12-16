@@ -48,9 +48,9 @@ export default function Home() {
         ...time,
         currentTime: data.playedSeconds,
       });
-      if (data.playedSeconds > 0 && data.playedSeconds < 10) {
+      if (data.playedSeconds > 0 && data.playedSeconds < 82) {
         setChapter(1);
-      } else if (data.playedSeconds > 80 && data.playedSeconds < 115) {
+      } else if (data.playedSeconds > 82 && data.playedSeconds < 115) {
         setChapter(2);
       } else if (data.playedSeconds > 115) {
         setChapter(3);
