@@ -276,7 +276,7 @@
 
 .chapter:hover::after {
 
-  height: calc(500px + 8px)
+  height: calc(800px + 8px)
   
 }
 
