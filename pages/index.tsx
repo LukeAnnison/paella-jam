@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, useRef, useMemo } from "react";
 
-import styles from '../styles/Home.module.css'
+import styles from "../styles/Home.module.css";
 import ServiceBox from "../components/ServiceBox";
 import Chapter from "../components/Chapter";
 import ReactPlayer from "react-player";
@@ -9,10 +9,11 @@ export default function Home() {
   const [playing, setPlaying] = useState(false);
   const [chapter, setChapter] = useState(1);
   const [seeking, setSeeking] = useState(false);
+  const [time, setTime] = useState({ duration: 181, currentTime: 0 });
   const player = useRef(null) as any;
 
-  // Hydrates for React Player 
-const [hasWindow, setHasWindow] = useState(false);
+  // Hydrates for React Player
+  const [hasWindow, setHasWindow] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
@@ -43,11 +44,15 @@ const [hasWindow, setHasWindow] = useState(false);
     duration: number;
   }) => {
     if (!seeking) {
+      setTime({
+        ...time,
+        currentTime: data.playedSeconds,
+      });
       if (data.playedSeconds > 0 && data.playedSeconds < 10) {
         setChapter(1);
-      } else if (data.playedSeconds > 70 && data.playedSeconds < 120) {
+      } else if (data.playedSeconds > 80 && data.playedSeconds < 115) {
         setChapter(2);
-      } else if (data.playedSeconds > 120) {
+      } else if (data.playedSeconds > 115) {
         setChapter(3);
       }
     }
@@ -62,25 +67,42 @@ const [hasWindow, setHasWindow] = useState(false);
       <main className={styles.main}>
         <div className={styles.grid}>
           <div className={styles.video}>
-        {
-        hasWindow &&
-            <ReactPlayer
-              url="https://www.youtube.com/watch?v=xhnqO-c2s5U"
-              onProgress={handleProgress}
-              playing={playing}
-              autoPlay={true}
-              progressInterval={1}
-              onSeek={(e: number) => console.log("seek", e)}
-              height='300px'
-              width='500px'
-              ref={player}
-            />
-        }
+            {hasWindow && (
+              <ReactPlayer
+                url="https://www.youtube.com/watch?v=xhnqO-c2s5U"
+                onProgress={handleProgress}
+                playing={playing}
+                autoPlay={true}
+                progressInterval={1}
+                onSeek={(e: number) => console.log("seek", e)}
+                height="300px"
+                width="500px"
+                ref={player}
+              />
+            )}
           </div>
           <div className={styles.grid}>
-            <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={1} />
-            <Chapter  setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={2} />
-            <Chapter setChapter={setChapter} chapter={chapter} seek={seek} chapterInstance={3} />
+            <Chapter
+              time={time}
+              setChapter={setChapter}
+              chapter={chapter}
+              seek={seek}
+              chapterInstance={1}
+            />
+            <Chapter
+              time={time}
+              setChapter={setChapter}
+              chapter={chapter}
+              seek={seek}
+              chapterInstance={2}
+            />
+            <Chapter
+              time={time}
+              setChapter={setChapter}
+              chapter={chapter}
+              seek={seek}
+              chapterInstance={3}
+            />
           </div>
         </div>
       </main>

@@ -1,4 +1,3 @@
-
 interface Props {
   children: React.ReactNode;
 }
@@ -6,10 +5,10 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <>
-        <header>
-          <h1>Paella Jam</h1>
-        </header>
+      <header>
+        <h1>Paella Jam</h1>
+      </header>
       <main>{children}</main>
     </>
-  )
+  );
 }

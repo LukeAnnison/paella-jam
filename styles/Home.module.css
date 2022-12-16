@@ -221,6 +221,12 @@
   padding: 20px;
 }
 
+.chapterTextActive {
+  padding: 20px;
+  background-color: white;
+  color: black;
+}
+
 .chapter:h2,
 .chapterActive:h2 {
   margin: 0 0 1rem 0;
@@ -263,13 +269,13 @@
   width: calc(100%);
   height: 0;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
-.chapter:hover::after,
-.chapterActive::after{
+.chapter:hover::after {
+
   height: calc(500px + 8px)
   
 }

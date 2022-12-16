@@ -3,7 +3,7 @@ import styles from "../../styles/Home.module.css";
 interface Chapter {
   step: number;
   input: {
-    [key: number]: string
+    [key: number]: string;
   };
 }
 
@@ -26,19 +26,22 @@ export const InputChapter = ({
     <div className={styles.inputChapter}>
       <h3 className={styles.inputHeader}>Chapter {chapter}</h3>
       <h4 className={styles.inputHeader}>Step {chapters[chapter].step}</h4>
-        <button 
+      <button
         disabled={chapters[chapter].step === 1}
         className={styles.inputButton}
-        onClick={handlePrev}>Back</button>
+        onClick={handlePrev}
+      >
+        Back
+      </button>
       <div className={styles.formGroup}>
-      <input
-        type="text"
-        placeholder="Input"
-        className={styles.inputForm}
-        name={chapters[chapter].step}
-        value={chapters[chapter].input[chapters[chapter].step]}
-        onChange={handleChange}
-      />
+        <input
+          type="text"
+          placeholder="Input"
+          className={styles.inputForm}
+          name={chapters[chapter].step}
+          value={chapters[chapter].input[chapters[chapter].step]}
+          onChange={handleChange}
+        />
       </div>
       <button
         disabled={chapters[chapter].input[chapters[chapter].step] === ""}

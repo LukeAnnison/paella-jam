@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { VideoContext } from "../../contexts/video";
 import { InputChapter } from "./InputChapter";
 
